@@ -1,5 +1,5 @@
 import './charList.scss';
-import { Component } from 'react/cjs/react.production.min';
+import { Component } from 'react/cjs/react.development';
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import MarvelService from '../../services/MarvelService';
@@ -26,6 +26,7 @@ class CharList extends Component {
             charList,
             loading: false
         })
+
     }
 
     onError = () => {
@@ -35,7 +36,7 @@ class CharList extends Component {
         })
     }
 
-
+   
 
     renderItems(arr) {
         const items =  arr.map((item) => {

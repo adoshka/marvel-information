@@ -17,16 +17,33 @@ class RandomChar extends Component {
     }
 
     marvelService = new MarvelService();
+    
     componentDidMount() {
         this.updateChar();
     };
+
+    componentWillUnmount() {
+        clearInterval(this.timerId);
+    }
 
 
     onCharLoaded = (char) => {
         this.setState({
             char,
             loading: false,
-            error: false
+        })
+    }
+
+    onCharLoading = () => {
+        this.setState({
+            loading: true
+        })
+    }
+
+    onError = () => {
+        this.setState({
+            loading: false,
+            error: true
         })
     }
 
@@ -36,13 +53,6 @@ class RandomChar extends Component {
             .getCharacter(id)
             .then(this.onCharLoaded)
             .catch(this.onError);
-    }
-
-    onError = () => {
-        this.setState({
-            loading: false,
-            error: true
-        })
     }
 
 
